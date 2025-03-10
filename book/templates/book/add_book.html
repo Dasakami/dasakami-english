@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'vendor/css/add_book.css' %}">
+</head>
+<body>
+    <section class="add-book">
+        <h2>Add a New Book</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="btn">Add Book</button>
+            <a href="{% url 'book:book_list' %}" class="book-list-link">Book List</a>
+        </form>
+    </section>
+</body>
+</html>

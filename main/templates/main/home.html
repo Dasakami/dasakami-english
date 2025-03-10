@@ -1,0 +1,623 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/vendor/css/home-on.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	
+    <meta name="theme-color" content="rgb(0 122 255)">
+    <link rel="manifest" href="./manifest.json">
+    {% block css %}
+    {% endblock %}
+    <title>{% block title %}Dasakami English {% endblock %}</title>
+</head>
+<body>
+    <div class="ezy__nav2_SU4YUVBU">
+      <nav class="navbar navbar-expand-lg  py-3">
+        <div class="container">
+          <a class="navbar-brand" href="#">
+            Dasakami English
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span>
+              <span></span>
+            </span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 mt-4 mt-lg-0">
+              <li class="nav-item"><a class="nav-link active" href="{% url 'home' %}">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'learn:learn' %}">Study</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'book:book_list' %}">Book</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'app' %}">App</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'flashcards:flashcard_list' %}">Flashcards</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'movies:movie_list' %}">Movies</a></li>
+                    {% if user.is_superuser or user.is_staff %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'admin' %}">Admin</a></li>
+                            {% endif %}
+            </ul>
+            <div class="profile-user">
+              {% if user.is_authenticated %}
+                  <a href="{% url 'users:profile' %}"><img src="{% if user.image %}{{ user.image.url }} {% else %} {% static 'vendor/img/Recon.png' %}  {% endif %}" alt="#" id="profile-client" ></a>
+              {% else %}
+              <ul class="navbar-nav flex-row mb-2 mb-lg-0 ms-lg-3">
+                <li class="nav-item me-2">
+                  <a href="{% url 'users:login' %}" class="btn btn-outline-primary px-3">Sign Up</a>
+                </li>
+                <li class="nav-item">
+                  <a href="{% url 'users:register' %}" class="btn btn-primary px-3">Log In</a>
+                </li>
+              </ul>
+              {% endif %}
+          </div>
+            
+          </div>
+        </div>
+      </nav>
+    </div>
+    {% block content %}
+    <section class="ezy__header25_KNo5ANIL">
+      <div class="container">
+        <div class="row text-center text-lg-start align-items-center" id="section-main">
+          <div class="col-12 col-lg-6 py-5">
+            <h1 class="ezy__header25_KNo5ANIL-heading">Speak English with Confidence</h1>
+            <p class="ezy__header25_KNo5ANIL-sub-heading my-4">
+              Our courses are designed to help you understand English and speak it fluently in everyday conversations, business settings, and travel. With interactive lessons and practical exercises, you’ll gain the skills you need to communicate confidently in any situation. 
+            </p>
+    
+            <a href="{% url 'learn:learn' %}" class="btn ezy__header25_KNo5ANIL-btn fs-5 mt-2" id="first-btn">Start learning today!</a>
+          </div>
+          <div class="col-12 col-lg-6">
+            <div class="position-relative mt-4 mt-md-0">
+              <img src="https://cdn.easyfrontend.com/pictures/hero/hero_28.svg" class="ezy__header25_KNo5ANIL-svg img-fluid" />
+              <img src="https://cdn.easyfrontend.com/pictures/hero/hero_28.png" class="ezy__header25_KNo5ANIL-img img-fluid" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="ezy__numbers11_x9fg99SK">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-12">
+            <h2 class="ezy__numbers11_x9fg99SK-heading">Awards</h2>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="card ezy__numbers11_x9fg99SK-card border-0 mt-5">
+              <div class="mb-4">
+                <img src="https://cdn.easyfrontend.com/pictures/logos/award-logo.png" alt="" class="img-fluid" />
+              </div>
+              <h5 class="mb-0">We are proud to have received numerous accolades for offering high-quality English learning resources and advice.</h5>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="card ezy__numbers11_x9fg99SK-card border-0 mt-5">
+              <div class="mb-4">
+                <img src="https://cdn.easyfrontend.com/pictures/logos/award-logo.png" alt="" class="img-fluid" />
+              </div>
+              <h5 class="mb-0">Our platform covers a wide range of topics, from vocabulary and phrases to grammar and memory training, ensuring comprehensive learning for all levels.</h5>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="card ezy__numbers11_x9fg99SK-card border-0 mt-5">
+              <div class="mb-4">
+                <img src="https://cdn.easyfrontend.com/pictures/logos/award-logo.png" alt="" class="img-fluid" />
+              </div>
+              <h5 class="mb-0">Each award reflects the dedication of our community. Join us to enhance your English skills and add your own contributions!</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ezy__sheader6_XJVtfbpF">
+      <div class="container">
+        <div class="ezy__sheader6_XJVtfbpF-overlay"></div>
+        <div class="row">
+          <div class="col-12 col-md-8">
+            <h1 class="ezy__sheader6_XJVtfbpF-heading">The "Study" section</h1>
+            <p class="ezy__sheader6_XJVtfbpF-sub-heading mt-4 mb-0">Home > Srudy</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ezy__epcategory9_hT3rgBvl">
+      <!-- shapes -->
+      <div class="position-absolute top-0 end-0">
+        <img src="https://cdn.easyfrontend.com/pictures/ecommerce/grid_10_shape1.png" alt="" />
+      </div>
+    
+      <div class="container position-relative">
+        <div class="row justify-content-center">
+          <div class="col-12 text-center mb-5">
+            <h2 class="ezy__epcategory9_hT3rgBvl-heading">Top Category</h2>
+          </div>
+    
+          <div class="col-12 mt-5">
+            <div id="ezy__epcategory9_hT3rgBvl-controls" class="carousel slide position-relative" data-ride="carousel">
+              <div class="carousel-inner overflow-visible">
+                <div class="carousel-item active">
+                  <div class="row">
+                    <div class="col-12 col-md-3 my-5">
+                      <a href="#!" class="ezy__epcategory9_hT3rgBvl-item">
+                        <div class="ezy__epcategory9_hT3rgBvl-img">
+                          <img src="https://cdn.easyfrontend.com/pictures/ecommerce/grid_9_1.png" alt="" />
+                        </div>
+                        <h4 class="mb-4">Things</h4>
+                      </a>
+                    </div>
+                    <div class="col-12 col-md-3 my-5">
+                      <a href="#!" class="ezy__epcategory9_hT3rgBvl-item">
+                        <div class="ezy__epcategory9_hT3rgBvl-img">
+                          <img src="https://cdn.easyfrontend.com/pictures/ecommerce/grid_9_4.png" alt="" />
+                        </div>
+                        <h4 class="mb-4">Kids</h4>
+                      </a>
+                    </div>
+                    <div class="col-12 col-md-3 my-5">
+                      <a href="#!" class="ezy__epcategory9_hT3rgBvl-item">
+                        <div class="ezy__epcategory9_hT3rgBvl-img">
+                          <img src="https://cdn.easyfrontend.com/pictures/ecommerce/grid_9_3.png" alt="" />
+                        </div>
+                        <h4 class="mb-4">School Things</h4>
+                      </a>
+                    </div>
+                    <div class="col-12 col-md-3 my-5">
+                      <a href="#!" class="ezy__epcategory9_hT3rgBvl-item">
+                        <div class="ezy__epcategory9_hT3rgBvl-img">
+                          <img src="https://cdn.easyfrontend.com/pictures/ecommerce/grid_9_5.png" alt="" />
+                        </div>
+                        <h4 class="mb-4">Building</h4>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="row">
+                    <div class="col-12 col-md-3 my-5">
+                      <a href="#!" class="ezy__epcategory9_hT3rgBvl-item">
+                        <div class="ezy__epcategory9_hT3rgBvl-img">
+                          <img src="https://cdn.easyfrontend.com/pictures/ecommerce/grid_9_1.png" alt="" />
+                        </div>
+                        <h4 class="mb-4">Toys</h4>
+                      </a>
+                    </div>
+                    <div class="col-12 col-md-3 my-5">
+                      <a href="#!" class="ezy__epcategory9_hT3rgBvl-item">
+                        <div class="ezy__epcategory9_hT3rgBvl-img">
+                          <img src="https://cdn.easyfrontend.com/pictures/ecommerce/grid_9_4.png" alt="" />
+                        </div>
+                        <h4 class="mb-4">Kids</h4>
+                      </a>
+                    </div>
+                    <div class="col-12 col-md-3 my-5">
+                      <a href="#!" class="ezy__epcategory9_hT3rgBvl-item">
+                        <div class="ezy__epcategory9_hT3rgBvl-img">
+                          <img src="https://cdn.easyfrontend.com/pictures/ecommerce/grid_9_3.png" alt="" />
+                        </div>
+                        <h4 class="mb-4">Bags</h4>
+                      </a>
+                    </div>
+                    <div class="col-12 col-md-3 my-5">
+                      <a href="#!" class="ezy__epcategory9_hT3rgBvl-item">
+                        <div class="ezy__epcategory9_hT3rgBvl-img">
+                          <img src="https://cdn.easyfrontend.com/pictures/ecommerce/grid_9_5.png" alt="" />
+                        </div>
+                        <h4 class="mb-4">Babies</h4>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="row">
+                    <div class="col-12 col-md-3 my-5">
+                      <a href="#!" class="ezy__epcategory9_hT3rgBvl-item">
+                        <div class="ezy__epcategory9_hT3rgBvl-img">
+                          <img src="https://cdn.easyfrontend.com/pictures/ecommerce/grid_9_1.png" alt="" />
+                        </div>
+                        <h4 class="mb-4">Toys</h4>
+                      </a>
+                    </div>
+                    <div class="col-12 col-md-3 my-5">
+                      <a href="#!" class="ezy__epcategory9_hT3rgBvl-item">
+                        <div class="ezy__epcategory9_hT3rgBvl-img">
+                          <img src="https://cdn.easyfrontend.com/pictures/ecommerce/grid_9_4.png" alt="" />
+                        </div>
+                        <h4 class="mb-4">Kids</h4>
+                      </a>
+                    </div>
+                    <div class="col-12 col-md-3 my-5">
+                      <a href="#!" class="ezy__epcategory9_hT3rgBvl-item">
+                        <div class="ezy__epcategory9_hT3rgBvl-img">
+                          <img src="https://cdn.easyfrontend.com/pictures/ecommerce/grid_9_3.png" alt="" />
+                        </div>
+                        <h4 class="mb-4">Bags</h4>
+                      </a>
+                    </div>
+                    <div class="col-12 col-md-3 my-5">
+                      <a href="#!" class="ezy__epcategory9_hT3rgBvl-item">
+                        <div class="ezy__epcategory9_hT3rgBvl-img">
+                          <img src="https://cdn.easyfrontend.com/pictures/ecommerce/grid_9_5.png" alt="" />
+                        </div>
+                        <h4 class="mb-4">Babies</h4>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="ezy__epcategory9_hT3rgBvl-arrows d-flex align-items-center">
+                <button
+                  class="carousel-control-prev ezy__epcategory9_hT3rgBvl-arrow-left me-4"
+                  type="button"
+                  data-bs-target="#ezy__epcategory9_hT3rgBvl-controls"
+                  data-bs-slide="prev"
+                >
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+                <button
+                  class="carousel-control-next ezy__epcategory9_hT3rgBvl-arrow-right"
+                  type="button"
+                  data-bs-target="#ezy__epcategory9_hT3rgBvl-controls"
+                  data-bs-slide="next"
+                >
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ezy__testimonial10_ANBLq3U8">
+      <div class="container position-relative">
+        <div class="row mb-4 mb-lg-5">
+          <div class="col-lg-6">
+            <h2 class="ezy__testimonial10_ANBLq3U8-heading mb-4">Reviews</h2>
+            <p class="ezy__testimonial10_ANBLq3U8-sub-heading mb-0">
+              Join thousands of learners who have already benefited from our platform. Our community members share their experiences, tips, and success stories to help you succeed in your English learning journey.
+            </p>
+          </div>
+        </div>
+        <div class="row ezy__testimonial10_ANBLq3U8-card">
+          <div class="col-md-6 mt-3 mt-md-4">
+            <div class="card ezy__testimonial10_ANBLq3U8-item">
+              <div class="card-body d-flex align-items-center p-4 py-5">
+                <div class="me-3">
+                  <img src="https://cdn.easyfrontend.com/pictures/users/user20.jpg" alt=""
+                    class="img-fluid ezy__testimonial10_ANBLq3U8-img rounded-circle border border-4 border-danger" />
+                </div>
+                <div>
+                  <h4 class="ezy__testimonial10_ANBLq3U8-title fs-4 mb-2">Alexey, 34 years old</h4>
+                  <p class="mb-3 ezy__testimonial10_ANBLq3U8-rating">
+                    <span class="fas fa-star active"></span>
+                    <span class="fas fa-star active"></span>
+                    <span class="fas fa-star active"></span>
+                    <span class="fas fa-star-half-alt active"></span>
+                    <span class="fas fa-star"></span>
+                  </p>
+                  <p class="ezy__testimonial10_ANBLq3U8-content mb-0">
+                    Thanks to this platform, I was finally able to speak English fluently! Learning phrasal verbs and grammar became much easier, and I’m seeing results after just a few months. This platform is amazing!
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mt-3 mt-md-4">
+            <div class="card ezy__testimonial10_ANBLq3U8-item">
+              <div class="card-body d-flex align-items-center p-4 py-5">
+                <div class="me-3">
+                  <img src="https://cdn.easyfrontend.com/pictures/users/user15.jpg" alt=""
+                    class="img-fluid ezy__testimonial10_ANBLq3U8-img rounded-circle border border-4 border-danger" />
+                </div>
+                <div>
+                  <h4 class="ezy__testimonial10_ANBLq3U8-title fs-4 mb-2">Anna, 28 years old</h4>
+                  <p class="mb-3 ezy__testimonial10_ANBLq3U8-rating">
+                    <span class="fas fa-star active"></span>
+                    <span class="fas fa-star active"></span>
+                    <span class="fas fa-star active"></span>
+                    <span class="fas fa-star-half-alt active"></span>
+                    <span class="fas fa-star"></span>
+                  </p>
+                  <p class="ezy__testimonial10_ANBLq3U8-content mb-0">
+                    I've always wanted to improve my English but didn’t know where to start. This platform turned out to be perfect for me! The variety of topics, phrases, and grammar, along with the memory training through flashcards, helped me make great progress. Highly recommend it to everyone!
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mt-3 mt-md-4">
+            <div class="card ezy__testimonial10_ANBLq3U8-item">
+              <div class="card-body d-flex align-items-center p-4 py-5">
+                <div class="me-3">
+                  <img src="https://cdn.easyfrontend.com/pictures/users/user22.jpg" alt=""
+                    class="img-fluid ezy__testimonial10_ANBLq3U8-img rounded-circle border border-4 border-danger" />
+                </div>
+                <div>
+                  <h4 class="ezy__testimonial10_ANBLq3U8-title fs-4 mb-2">Dmitry, 30 years old</h4>
+                  <p class="mb-3 ezy__testimonial10_ANBLq3U8-rating">
+                    <span class="fas fa-star active"></span>
+                    <span class="fas fa-star active"></span>
+                    <span class="fas fa-star active"></span>
+                    <span class="fas fa-star-half-alt active"></span>
+                    <span class="fas fa-star"></span>
+                  </p>
+                  <p class="ezy__testimonial10_ANBLq3U8-content mb-0">
+                    As someone who struggled to find the right method to learn English, I’m now confident in my choice! The course covers everything from vocabulary to complex grammar, and all of it is free. Thank you for providing such a resource
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mt-3 mt-md-4">
+            <div class="card ezy__testimonial10_ANBLq3U8-item">
+              <div class="card-body d-flex align-items-center p-4 py-5">
+                <div class="me-3">
+                  <img src="https://cdn.easyfrontend.com/pictures/users/user1.jpg" alt=""
+                    class="img-fluid ezy__testimonial10_ANBLq3U8-img rounded-circle border border-4 border-danger" />
+                </div>
+                <div>
+                  <h4 class="ezy__testimonial10_ANBLq3U8-title fs-4 mb-2">Victoria, 22 years old</h4>
+                  <p class="mb-3 ezy__testimonial10_ANBLq3U8-rating">
+                    <span class="fas fa-star active"></span>
+                    <span class="fas fa-star active"></span>
+                    <span class="fas fa-star active"></span>
+                    <span class="fas fa-star-half-alt active"></span>
+                    <span class="fas fa-star"></span>
+                  </p>
+                  <p class="ezy__testimonial10_ANBLq3U8-content mb-0">
+                    I really like the flashcard section! It’s a great way to learn new words and phrases. I can add my own cards and study them anytime. My English is improving every day!
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ezy__faq4_ChX8xs8d">
+      <div class="container">
+        <div class="row justify-content-center mb-md-4">
+          <div class="col-lg-8 col-xl-7 text-center">
+            <h2 class="ezy__faq4_ChX8xs8d-heading mb-3">Frequently Asked Questions</h2>
+            <p class="ezy__faq4_ChX8xs8d-sub-heading mb-0">
+              It’s easier to reach your savings goals when you have the right savings account. Take a look and find the
+              right one for you!
+            </p>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <div class="ezy__faq4_ChX8xs8d-item mt-4">
+              <a class="btn p-3 p-lg-4 w-100 text-start d-flex justify-content-between align-items-center ezy__faq4_ChX8xs8d-btn-collapse"
+                data-bs-toggle="collapse" href="#ezy-faq4-collapse-1" role="button" aria-expanded="true"
+                aria-controls="ezy-faq4-collapse-1">
+                <span>What is Easy Frontend?</span>
+                <span class="fas fa-chevron-down"></span>
+              </a>
+              <div class="collapse show" id="ezy-faq4-collapse-1">
+                <div class="ezy__faq4_ChX8xs8d-content p-3 p-lg-4">
+                  <p class="opacity-50 mb-0">
+                    When it comes to booking a holiday, we know everyone likes something different - so we've designed
+                    our getaways with you in mind. When it comes to booking a holiday, we know everyone likes something
+                    different - so we've designed our getaways with you in mind.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="ezy__faq4_ChX8xs8d-item mt-4">
+              <a class="btn p-3 p-lg-4 w-100 text-start d-flex justify-content-between align-items-center ezy__faq4_ChX8xs8d-btn-collapse"
+                data-bs-toggle="collapse" href="#ezy-faq4-collapse-2" role="button" aria-expanded="false"
+                aria-controls="ezy-faq4-collapse-2">
+                <span>Who is Easy Frontend for?</span>
+                <span class="fas fa-chevron-down"></span>
+              </a>
+              <div class="collapse" id="ezy-faq4-collapse-2">
+                <div class="ezy__faq4_ChX8xs8d-content p-3 p-lg-4">
+                  <p class="opacity-50 mb-0">
+                    When it comes to booking a holiday, we know everyone likes something different - so we've designed
+                    our getaways with you in mind.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="ezy__faq4_ChX8xs8d-item mt-4">
+              <a class="btn p-3 p-lg-4 w-100 text-start d-flex justify-content-between align-items-center ezy__faq4_ChX8xs8d-btn-collapse"
+                data-bs-toggle="collapse" href="#ezy-faq4-collapse-3" role="button" aria-expanded="false"
+                aria-controls="ezy-faq4-collapse-3">
+                <span>How does Easy Frontend work?</span>
+                <span class="fas fa-chevron-down"></span>
+              </a>
+              <div class="collapse" id="ezy-faq4-collapse-3">
+                <div class="ezy__faq4_ChX8xs8d-content p-3 p-lg-4">
+                  <p class="opacity-50 mb-0">
+                    When it comes to booking a holiday, we know everyone likes something different - so we've designed
+                    our getaways with you in mind.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="ezy__faq4_ChX8xs8d-item mt-4">
+              <a class="btn p-3 p-lg-4 w-100 text-start d-flex justify-content-between align-items-center ezy__faq4_ChX8xs8d-btn-collapse"
+                data-bs-toggle="collapse" href="#ezy-faq4-collapse-4" role="button" aria-expanded="false"
+                aria-controls="ezy-faq4-collapse-4">
+                <span>How often does your team upload resources?</span>
+                <span class="fas fa-chevron-down"></span>
+              </a>
+              <div class="collapse" id="ezy-faq4-collapse-4">
+                <div class="ezy__faq4_ChX8xs8d-content p-3 p-lg-4">
+                  <p class="opacity-50 mb-0">
+                    When it comes to booking a holiday, we know everyone likes something different - so we've designed
+                    our getaways with you in mind.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="ezy__faq4_ChX8xs8d-item mt-4">
+              <a class="btn p-3 p-lg-4 w-100 text-start d-flex justify-content-between align-items-center ezy__faq4_ChX8xs8d-btn-collapse"
+                data-bs-toggle="collapse" href="#ezy-faq4-collapse-5" role="button" aria-expanded="false"
+                aria-controls="ezy-faq4-collapse-5">
+                <span>Can I get a refund if I cancel my subscription?</span>
+                <span class="fas fa-chevron-down"></span>
+              </a>
+              <div class="collapse" id="ezy-faq4-collapse-5">
+                <div class="ezy__faq4_ChX8xs8d-content p-3 p-lg-4">
+                  <p class="opacity-50 mb-0">
+                    When it comes to booking a holiday, we know everyone likes something different - so we've designed
+                    our getaways with you in mind.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="ezy__faq4_ChX8xs8d-item mt-4">
+              <a class="btn p-3 p-lg-4 w-100 text-start d-flex justify-content-between align-items-center ezy__faq4_ChX8xs8d-btn-collapse"
+                data-bs-toggle="collapse" href="#ezy-faq4-collapse-6" role="button" aria-expanded="false"
+                aria-controls="ezy-faq4-collapse-6">
+                <span>Can I use Easy Frontend designs in my portfolio?</span>
+                <span class="fas fa-chevron-down"></span>
+              </a>
+              <div class="collapse" id="ezy-faq4-collapse-6">
+                <div class="ezy__faq4_ChX8xs8d-content p-3 p-lg-4">
+                  <p class="opacity-50 mb-0">
+                    When it comes to booking a holiday, we know everyone likes something different - so we've designed
+                    our getaways with you in mind.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="ezy__faq4_ChX8xs8d-item mt-4">
+              <a class="btn p-3 p-lg-4 w-100 text-start d-flex justify-content-between align-items-center ezy__faq4_ChX8xs8d-btn-collapse"
+                data-bs-toggle="collapse" href="#ezy-faq4-collapse-7" role="button" aria-expanded="false"
+                aria-controls="ezy-faq4-collapse-7">
+                <span>Can I buy Easy Frontend extended license?</span>
+                <span class="fas fa-chevron-down"></span>
+              </a>
+              <div class="collapse" id="ezy-faq4-collapse-7">
+                <div class="ezy__faq4_ChX8xs8d-content p-3 p-lg-4">
+                  <p class="opacity-50 mb-0">
+                    When it comes to booking a holiday, we know everyone likes something different - so we've designed
+                    our getaways with you in mind.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+      <script>
+        const faqItems = document.querySelectorAll('.faq-item');
+
+faqItems.forEach(item => {
+  const question = item.querySelector('.faq-question');
+  
+  question.addEventListener('click', () => {
+    item.classList.toggle('active');
+  });
+});
+
+      </script>
+
+
+  {% endblock %}
+  <section class="ezy__footer3_L54dNXrz">
+    <div class="container">
+      <div class="row text-center text-sm-start mb-md-5">
+        <div class="col-lg-3">
+          <h2 class="fw-bold">Dasakami English</h2>
+        </div>
+        <div class="col-sm-6 col-lg-2 mt-4 mt-lg-0">
+          <h5>Quick Links</h5>
+          <ul class="nav flex-column ezy__footer3_L54dNXrz-quick-links">
+            <li>
+              <a href="{% url 'home' %}"><span class="fas fa-chevron-right me-2 small opacity-50"></span> Home</a>
+            </li>
+            <li>
+              <a href="{% url 'learn:learn' %}"><span class="fas fa-chevron-right me-2 small opacity-50"></span> Study </a>
+            </li>
+            <li>
+              <a href="{% url 'movies:movie_list' %}"><span class="fas fa-chevron-right me-2 small opacity-50"></span> Movies </a>
+            </li>
+            <li>
+              <a href="{% url 'book:book_list' %}"><span class="fas fa-chevron-right me-2 small opacity-50"></span> Books</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-sm-6 col-lg-2 mt-4 mt-lg-0">
+          <h5>Social Media</h5>
+          <ul class="nav flex-column ezy__footer3_L54dNXrz-quick-links">
+            <li>
+              <a href="#"><span class="fas fa-chevron-right me-2 small opacity-50"></span> WhatsApp</a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/edit_anime.dsk/"><span class="fas fa-chevron-right me-2 small opacity-50"></span> Instagram</a>
+            </li>
+            <li>
+              <a href="https://web.telegram.org/a/#-1002183760446"><span class="fas fa-chevron-right me-2 small opacity-50"></span> Telegram</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-sm-6 col-lg-2 mt-4 mt-lg-0">
+          <h5>Job Info</h5>
+          <ul class="nav flex-column ezy__footer3_L54dNXrz-quick-links">
+            <li>
+              <a href="#"><span class="fas fa-chevron-right me-2 small opacity-50"></span> Select</a>
+            </li>
+            <li>
+              <a href="#"><span class="fas fa-chevron-right me-2 small opacity-50"></span> Service</a>
+            </li>
+            <li>
+              <a href="{% static 'vendor/files/privacy.pdf' %}"><span class="fas fa-chevron-right me-2 small opacity-50"></span>  Policy & Politics</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-sm-6 col-lg-3 mt-4 mt-lg-0">
+          <h5>Contact Us</h5>
+          <ul class="nav flex-column ezy__footer3_L54dNXrz-quick-links">
+            <li>Kyrgyzstan, Bishkek</li>
+            <li>
+              <a href="https://mail.google.com/mail/u/0/#inbox?compose=CllgCJqVNtqPjpMhnLlVPQnKNxpfvJkTgcDFSTCVwPfpDwJgGHMtkhqZGrgWZHPnLkBmJNSqRQV"><span class="fas fa-envelope me-2 small opacity-50"></span> dendasakami@gmail.com</a>
+            </li>
+            <li>
+              <a href="#"><span class="fas fa-phone me-2 small opacity-50"></span> +996 555 8** 8*1</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <hr />
+      <div class="row d-flex justify-content-between align-items-center text-center text-lg-start">
+        <div class="col-md-6">
+          <p class="mb-0 mt-1">Copyright &copy; Dasakami English, All rights reserved</p>
+        </div>
+        <div class="col-md-6">
+          <ul class="ezy__footer3_L54dNXrz-nav nav justify-content-center justify-content-md-end mt-1">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'learn:learn' %}">Study</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://mail.google.com/mail/u/0/#inbox?compose=CllgCJqVNtqPjpMhnLlVPQnKNxpfvJkTgcDFSTCVwPfpDwJgGHMtkhqZGrgWZHPnLkBmJNSqRQV">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/js/all.min.js" integrity="sha512-rpLlll167T5LJHwp0waJCh3ZRf7pO6IT1+LZOhAyP6phAirwchClbTZV3iqL3BMrVxIYRbzGTpli4rfxsCK6Vw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	
+  
+      
+</body>
+</html>

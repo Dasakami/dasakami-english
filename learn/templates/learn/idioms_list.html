@@ -1,0 +1,39 @@
+{% extends 'learn/words.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'vendor/css/phrase_verbs.css' %}">
+{% endblock %}
+{% block title %}Idioms{% endblock %}
+{% block content %}
+<h1>English Idioms</h1>
+    <a href="{% url 'learn:add_idiom' %}" id="add_idiom">Add New Idiom</a>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Idiom</th>
+                <th>Meaning</th>
+                <th>Usage</th>
+                {% if request.user.is_staff %}
+                <th>Actions</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for idiom in idioms %}
+                <tr>
+                    <td>{{ idiom.idiom }}</td>
+                    <td>{{ idiom.meaning }}</td>
+                    <td>{{ idiom.usage }}</td>
+                    {% if request.user.is_staff %}
+                    <td>
+                        <div class="delete-link">
+                            <a href="{% url 'learn:delete_idiom' idiom.id %}">Delete</a>
+                        </div>
+                    </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- flashcards/templates/flashcards/flashcard_list.html -->
+<h1>Flashcards</h1>
+<a href="{% url 'flashcards:flashcard_create' %}">Создать карточки</a>
+
+<div class="flashcards-container">
+    {% for flashcard in flashcards %}
+        <div class="flashcard">
+            <a href="{% url 'flashcards:flashcard_detail' flashcard.pk %}">
+                <img src="{{ flashcard.image.url }}" alt="{{ flashcard.word }}" class="flashcard-image">
+                <p><strong>{{ flashcard.word }}</strong> - {{ flashcard.translation }}</p>
+            </a>
+        </div>
+    {% endfor %}
+</div>
+
+</body>
+</html>

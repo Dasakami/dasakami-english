@@ -1,0 +1,59 @@
+{% extends 'learn/words.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'vendor/css/phrase_verbs.css' %}">
+{% endblock %}
+{% block title %}Phrases{% endblock %}
+{% block content %}
+    <h1>Фразовые глаголы</h1>
+    <div class="container-verbs" style="display: flex; gap: 40px; align-items: flex-start;">
+        <!-- Таблица -->
+        <div class="table-section" style="flex: 2;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Глагол</th>
+                        <th>Добавление</th>
+                        <th>Перевод</th>
+                        <th>Пример использования</th>
+                        {% if request.user.is_staff %}
+                    <th>Удаление</th>
+                    {% endif %}
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for verb in verbs %}
+                    <tr>
+                        <td>{{ verb.verb }}</td>
+                        <td>{{ verb.particle }}</td>
+                        <td>{{ verb.translation }}</td>
+                        <td>{{ verb.example }}</td>
+                        {% if request.user.is_staff %}
+                    <td>
+                        <div class="delete-link">
+                            <a href="{% url 'learn:delete_phrasal_verb' verb.id %}">❌ Удалить</a></td>
+                        </div>
+                    {% endif %}
+                    </tr>
+                    {% empty %}
+                    <tr><td colspan="5">Пока нет фразовых глаголов</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% if request.user.is_staff %}
+        <!-- Боковая форма -->
+        <div class="form-section" style="flex: 1; border-left: 1px solid #ccc; padding-left: 20px;">
+            <h2>Добавить глагол</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Добавить</button>
+            </form>
+        </div>
+    
+        {% endif %}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ category.name }}</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            gap: 30px;
+            padding: 20px;
+        }
+        .table-section {
+            flex: 3;
+        }
+        .form-section {
+            flex: 1;
+            border-left: 2px solid #ccc;
+            padding-left: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #aaa;
+            text-align: left;
+        }
+        th {
+            background-color: #f0f0f0;
+        }
+        .delete-link {
+            color: red;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="table-section">
+        <h1>Слова из категории: {{ category.name }}</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Слово</th>
+                    <th>Перевод</th>
+                    <th>Пример</th>
+                    <th>Удаление</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for word in words %}
+                <tr>
+                    <td>{{ word.word }}</td>
+                    <td>{{ word.translation }}</td>
+                    <td>{{ word.example }}</td>
+                    <td><a class="delete-link" href="{% url 'learn:delete_word_card' word.id %}">❌</a></td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="4">Пока нет слов</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% if request.user.is_staff %}
+    <div class="form-section">
+        <h2>Добавить слово</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Добавить</button>
+        </form>
+    </div>
+    {% endif %}
+
+</body>
+</html>

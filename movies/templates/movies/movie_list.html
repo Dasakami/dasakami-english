@@ -1,0 +1,89 @@
+{% extends 'main/home.html' %}
+{% load static %}
+    {% block css %}
+    <link rel="stylesheet" href="{% static 'vendor/css/movie_list.css' %}">
+    {% endblock %}
+    {% block title %} Dasakami movie {% endblock %}
+    {% block content %}
+    <main>
+        <div class="level-buttons">
+            <form method="GET" action="{% url 'movies:movie_list' %}">
+                <div class="group">
+                    <svg class="icon" aria-hidden="true" viewBox="0 0 24 24">
+                        <g>
+                            <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
+                        </g>
+                    </svg>
+                    <input placeholder="Search movie..." type="search" class="input" name="q" value="{{ request.GET.q }}">
+                </div>
+            </form>
+            <div class="radio-inputs">
+                <label class="radio">
+                    <input type="radio" name="radio" {% if not request.GET.level %}checked{% endif %} 
+                           data-url="{% url 'movies:movie_list' %}">
+                    <span class="name">All</span>
+                </label>
+                <label class="radio">
+                    <input type="radio" name="radio" {% if request.GET.level == 'beginner' %}checked{% endif %} 
+                           data-url="{% url 'movies:movie_list' %}?level=beginner">
+                    <span class="name">Beginner</span>
+                </label>
+                <label class="radio">
+                    <input type="radio" name="radio" {% if request.GET.level == 'intermediate' %}checked{% endif %} 
+                           data-url="{% url 'movies:movie_list' %}?level=intermediate">
+                    <span class="name">Intermediate</span>
+                </label>
+                <label class="radio">
+                    <input type="radio" name="radio" {% if request.GET.level == 'advanced' %}checked{% endif %} 
+                           data-url="{% url 'movies:movie_list' %}?level=advanced">
+                    <span class="name">Advanced</span>
+                </label>
+            </div>
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    let radios = document.querySelectorAll('.radio-inputs input[type="radio"]');
+                    let currentUrl = window.location.href;
+            
+                    radios.forEach(radio => {
+                        if (currentUrl === radio.dataset.url) {
+                            radio.checked = true;
+                        }
+            
+                        radio.addEventListener('change', function () {
+                            window.location.href = this.dataset.url;
+                        });
+                    });
+                });
+            </script>
+            {% if user.is_authenticated %}
+                <a href="{% url 'movies:add_movie' %}" class="add-btn">+ Add movie</a>
+            {% endif %}
+        </div>
+        <!-- From Uiverse.io by Yaya12085 --> 
+    </main>
+    <section class="movies">
+        <h2>Movies Collection</h2>
+        <div class="movie-slider">
+            <div class="movies-container">
+                {% for movie in movies %}
+                <div class="movie-card">
+                    <a href="{% url 'movies:movie_detail' movie.id %}">
+                        {% if movie.poster %}
+                            <img src="{{ movie.poster.url }}" alt="Poster">  
+                        {% else %}
+                            <p>Обложка отсутствует</p>
+                        {% endif %}
+                    </a>
+                    <h3><a href="{% url 'movies:movie_detail' movie.id %}">{{ movie.title }}</a></h3>
+                    <p class="level">Genre: {{ movie.genre }}</p>
+                    <p class="level">Категория: {{ movie.category }}</p>
+                    
+                    <p class="level">Release: {{ movie.release_year }}</p>
+                    
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    {% endblock %}

@@ -1,0 +1,16 @@
+Internal Server Error: /manifest.json
+"GET /manifest.json HTTP/1.1" 500 211
+Internal Server Error: /d
+"GET /d HTTP/1.1" 500 211
+Internal Server Error: /dd
+"GET /dd HTTP/1.1" 500 211
+Internal Server Error: /manifest.json
+"GET /manifest.json HTTP/1.1" 500 211
+Internal Server Error: /dad
+"GET /dad HTTP/1.1" 500 211
+Internal Server Error: /daf/fds
+"GET //daf/fds HTTP/1.1" 500 211
+Internal Server Error: /manifest.json
+"GET /manifest.json HTTP/1.1" 500 211
+Internal Server Error: /manifest.json
+"GET /manifest.json HTTP/1.1" 500 211

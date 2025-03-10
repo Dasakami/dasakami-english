@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'vendor/css/movie_deta.css' %}">
+    <title>{{ movie.title }}</title>
+</head>
+<body>
+    <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+    <a href="{% url 'movies:movie_list' %}" class="styled-wrapper">
+        <button class="button">
+          <div class="button-box">
+            <span class="button-elem">
+              <svg
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                class="arrow-icon"
+              >
+                <path
+                  fill="black"
+                  d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
+                ></path>
+              </svg>
+            </span>
+            <span class="button-elem">
+              <svg
+                fill="black"
+                viewBox="0 0  24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                class="arrow-icon"
+              >
+                <path
+                  d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
+                ></path>
+              </svg>
+            </span>
+          </div>
+        </button>
+    </a>
+      
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-content" id="sidebar-content">
+            <h2>Рекомендуемые фильмы</h2>
+            <div class="recommended-movies">
+  {% for movie in recommended_movies %}
+                <a href="{% url 'movies:movie_detail' movie.pk  %} " class="recommended-card">
+                    <img src="{{ movie.poster.url }}" alt="">
+                    <div class="description-rek-movies">
+                        <h4>{{ movie.title }}</h4>
+                        <span><strong>Жанр:</strong> {{ movie.genre }}</span>
+                        <span><strong>Категория:</strong> {{ movie.category }}</span>
+            <span><strong>Год:</strong> {{ movie.release_year }}</span>
+                    </div>
+                </a>
+  {% empty %}
+                <p>Пока нет рекомендаций.</p>
+  {% endfor %}
+            </div>
+
+        </div>
+    </div>
+
+    <div class="main-content" id="main-content">
+        <h1>{{ movie.title }}</h1>
+        <div class="video-container">
+            <video width="640" height="360" controls>
+                <source src="{{ movie.video_url }}" type="video/mp4">
+                Ваш браузер не поддерживает видео.
+            </video>
+        </div>
+        <div class="details">
+            <span><strong>Жанр:</strong> {{ movie.genre }}</span>
+            <span><strong>Категория:</strong> {{ movie.category }}</span>
+            <span><strong>Год:</strong> {{ movie.release_year }}</span>
+        </div>
+        <p><strong>Рейтинг:</strong> {{ movie.rating }}</p>
+        <div class="rating">
+            <input type="radio" id="star-1" name="star-radio" value="star-1">
+            <label for="star-1">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+            </label>
+            <input type="radio" id="star-2" name="star-radio" value="star-1">
+            <label for="star-2">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+            </label>
+            <input type="radio" id="star-3" name="star-radio" value="star-1">
+            <label for="star-3">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+            </label>
+            <input type="radio" id="star-4" name="star-radio" value="star-1">
+            <label for="star-4">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+            </label>
+            <input type="radio" id="star-5" name="star-radio" value="star-1">
+            <label for="star-5">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+            </label>
+          </div>
+        <p class="description"><strong>Описание:</strong> {{ movie.description }}</p>
+        <div class="button-edit">
+            <a href="{% url 'movies:edit_movie' movie.id %}" class="btn btn-warning">Изменить</a>
+<a href="{% url 'movies:delete_movie' movie.id %}" class="btn btn-danger" onclick="return confirm('Вы уверены, что хотите удалить этот фильм?');">Удалить</a>
+
+        </div>
+        <h3>Комментарии</h3>
+
+        <div id="comments-list">
+          {% for comment in comments %}
+              <div class="comment">
+                  <p><strong>{{ comment.movie.title }}</strong> <small>{{ comment.created_at }}</small></p>
+                  <p>{{ comment.text|safe }}</p>  <!-- Используем |safe только после очистки с bleach -->
+              </div>
+          {% empty %}
+              <p>Комментариев ещё нет.</p>
+          {% endfor %}
+      </div>
+      
+      <h3>Оставить комментарий</h3>
+      <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit">Отправить</button>
+      </form>
+      <br>
+      <a href="{% url 'movies:movie_list' %}">Назад к списку</a>
+      
+
+    <script>
+function toggleSidebar() {
+    let sidebar = document.getElementById('sidebar');
+    let sidebarContent = document.getElementById('sidebar-content');
+    let mainContent = document.getElementById('main-content');
+
+    if (sidebar.classList.contains('open')) {
+        sidebar.classList.remove('open');
+        mainContent.style.marginRight = '0'; // 👈 сбрасываем сдвиг вправо
+    } else {
+        sidebar.classList.add('open');
+        mainContent.style.marginRight = '520px'; // 👈 сдвигаем контент влево
+    }
+}
+
+    </script>
+</body>
+</html>

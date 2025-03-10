@@ -1,0 +1,98 @@
+{% extends 'main/home.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'vendor/css/book_detai.css' %}">
+{% endblock %}
+{% block title %}Dasakami Book{% endblock %}
+{% block content %}
+<section class="book-detail">
+    <div class="left-side">
+        <div class="book-info">
+            {% if book.cover %}
+                <img src="{{ book.cover.url }}" alt="{{ book.title }}" class="book-cover">
+            {% else %}
+                <p>Cover image not available</p>
+            {% endif %}
+            <div class="book-text">
+                <h2>{{ book.title }}</h2>
+                <p><strong>Level:</strong> {{ book.get_level_display }}</p>
+            </div>
+        </div>
+        <!-- From Uiverse.io by SelfMadeSystem --> 
+<div class="rating">
+    <input type="radio" id="star-1" name="star-radio" value="star-1">
+    <label for="star-1">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+    </label>
+    <input type="radio" id="star-2" name="star-radio" value="star-1">
+    <label for="star-2">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+    </label>
+    <input type="radio" id="star-3" name="star-radio" value="star-1">
+    <label for="star-3">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+    </label>
+    <input type="radio" id="star-4" name="star-radio" value="star-1">
+    <label for="star-4">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+    </label>
+    <input type="radio" id="star-5" name="star-radio" value="star-1">
+    <label for="star-5">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+    </label>
+  </div>
+    </div>
+    
+    <div class="center-content">
+        <h2>{{ book.title }}</h2>
+        <p id="book-description">{{ book.description }}</p>
+        {% if book.file %}
+        <div class="buttons">
+            <a href="{{ book.file.url }}" class="btn" download>📥 Download</a>
+            <a href="{{ book.file.url }}" target="_blank" class="btn">📖 Read Online</a>
+            <a href="{% url 'book:edit_book' book.id %}" class="btn btn-primary">Изменить</a>
+        </div>
+        <form action="{% url 'book:delete_book' book.id %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <!-- From Uiverse.io by cssbuttons-io --> 
+
+            <button type="submit" class="btn btn-danger" id="delete"><span class="text">Delete</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path></svg></span></button>
+        </form>
+        {% endif %}
+        <form class="comment-form" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Добавить комментарий</button>
+        </form>
+
+        <!-- Список комментариев -->
+        <div class="comment-list">
+            {% for comment in book.comments.all %}
+                <div class="comment-item">
+                    <div class="comment-header">{{ comment.user.username }} says:</div>
+                    <p class="comment-text">{{ comment.text }}</p>
+                    <div class="comment-footer">{{ comment.created_at|date:"d M Y H:i" }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div class="right-side">
+        <h2>Рекомендуемые книги</h2>
+    <div class="recommended-books">
+    {% for recommended_book in recommended_books %}
+        <div class="recommended-book">
+            <a href="{% url 'book:book_detail' recommended_book.id %}">
+                <img src="{{ recommended_book.cover.url }}" alt="{{ recommended_book.title }}" class="recommended-book-cover">
+                <div class="infa-re-book">
+                    <p>{{ recommended_book.title }}</p>
+                    <p>Level: {{ recommended_book.level }}                    </p>
+                </div>
+            </a>
+        </div>
+    {% endfor %}
+</div>
+    </div>
+</section>
+
+{% endblock %}
