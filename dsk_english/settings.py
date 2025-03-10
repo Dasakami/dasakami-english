@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-98*olztu15&=zd@z2y5sq#vadder%kqbg98m41=#r(d#cx('
+SECRET_KEY = 'dj('
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -110,9 +110,9 @@ LOGGING = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dsk_english',  # Имя базы данных
+        'NAME': 'name db',  # Имя базы данных
         'USER': 'postgres',  # Имя пользователя
-        'PASSWORD': '1908',  # Пароль пользователя
+        'PASSWORD': 'password db',  # Пароль пользователя
         'HOST': 'localhost',
         'PORT': '5432',  # Порт по умолчанию для PostgreSQL
     }
@@ -172,8 +172,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'aspeirden@gmail.com'  # Замените на ваш email
-EMAIL_HOST_PASSWORD = 'den_aspeir_3'  # Замените на ваш пароль
+EMAIL_HOST_USER = 'myemail@example.com'  # Замените на ваш email
+EMAIL_HOST_PASSWORD = 'password email'  # Замените на ваш пароль
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Время жизни ссылки для сброса пароля
