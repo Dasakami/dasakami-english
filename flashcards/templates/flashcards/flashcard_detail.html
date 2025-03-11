@@ -1,41 +1,119 @@
+{% extends 'learn/words.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flashcard Detail</title>
-    <link rel="stylesheet" href="{% static 'vendor/css/flashcard_detail.css' %}">
-</head>
-<body>
-    <div class="flashcard-container">
-        <div class="flashcard" id="flashcard" onclick="flipCard()">
-            <div class="flashcard-inner">
-                <div class="flashcard-front">
-                    <img src="{{ flashcard.image.url }}" alt="{{ flashcard.word }}">
-                    <p>{{ flashcard.word }}</p>
-                </div>
-                <div class="flashcard-back">
-                    <p><strong>Перевод:</strong> {{ flashcard.translation }}</p>
-                </div>
+{% block css %}
+<link rel="stylesheet" href="{% static 'vendor/css/fla_detail.css' %}">
+{% endblock %}
+{% block title %}{{ card.title }} {% endblock %}
+{% block content %}
+<div class="flashcard-container">
+    {% for word in flashcard.wordcards.all %}
+    <div class="flashcard {% if not forloop.first %}hidden{% endif %}" onclick="flipCard(this)">
+        <div class="flashcard-inner">
+            <div class="flashcard-front">
+                {% if word.image %}
+                    <img src="{{ word.image.url }}" alt="{{ word.word_en }}">
+                {% endif %}
+                <p>{{ word.word_en }}</p>
+            </div>
+            <div class="flashcard-back">
+                <p><strong>Перевод:</strong> {{ word.word_ru }}</p>
             </div>
         </div>
     </div>
-    <div class="buttons">
-        <button onclick="nextCard()">Next Card</button>
-    </div>
+    
+    {% empty %}
+        <p>Пока нет карточек. Добавьте слова.</p>
+    {% endfor %}
+</div>
 
-    <script>
-        // Функция для переворота карточки
-        function flipCard() {
-            var card = document.getElementById('flashcard');
-            card.classList.toggle('flipped');
-        }
+<div class="buttons">
+    <button onclick="prevCard()">← Предыдущая</button>
+    <button onclick="nextCard()">Следующая →</button>
+</div>
 
-        // Функция для перехода к следующей карточке (будет в дальнейшем доработано для работы с карточками)
-        function nextCard() {
-            alert("Следующая карточка"); // Заглушка для переключения
-        }
-    </script>
-</body>
-</html>
+<a href="{% url 'flashcards:add_wordcards' flashcard.pk %}">Добавить слова в этот топик</a>
+<a href="{% url 'flashcards:flashcard_delete' flashcard.pk %}">Удалить</a>
+<a href="{% url 'flashcards:import_wordcards_pdf' flashcard.pk %}">Импортировать слова из PDF</a>
+
+<hr>
+<h2>Тест на запоминание слов</h2>
+
+<div id="quiz-container">
+    <div id="quiz-word"></div>
+    <input type="text" id="user-answer" placeholder="Введите перевод">
+    <button onclick="checkAnswer()">Проверить</button>
+    <div id="quiz-feedback"></div>
+    <button onclick="nextQuizWord()">Следующее слово</button>
+</div>
+
+<script>
+let currentCardIndex = 0;
+const cards = document.querySelectorAll('.flashcard');
+
+function flipCard(cardElement) {
+    // Переключаем класс 'flipped', чтобы добавить эффект поворота
+    cardElement.classList.toggle('flipped');
+}
+
+function showCard(index) {
+    // Скрыть все карточки
+    cards.forEach(card => {
+        card.classList.add('hidden');
+    });
+
+    // Показать нужную
+    cards[index].classList.remove('hidden');
+}
+
+function nextCard() {
+    cards[currentCardIndex].classList.remove('flipped'); // сброс переворота
+    currentCardIndex = (currentCardIndex + 1) % cards.length;
+    showCard(currentCardIndex);
+}
+
+function prevCard() {
+    cards[currentCardIndex].classList.remove('flipped'); // сброс переворота
+    currentCardIndex = (currentCardIndex - 1 + cards.length) % cards.length;
+    showCard(currentCardIndex);
+}
+
+// Используем JSON для передачи данных из Django в JavaScript
+const quizWords = JSON.parse('[{% for word in flashcard.wordcards.all %}{"word_en": "{{ word.word_en }}", "word_ru": "{{ word.word_ru }}"}{% if not forloop.last %},{% endif %}{% endfor %}]');
+    
+let quizIndex = 0;
+
+function showQuizWord() {
+    if (quizWords.length === 0) {
+        document.getElementById('quiz-container').innerHTML = "<p>Нет слов для теста.</p>";
+        return;
+    }
+    document.getElementById('quiz-word').innerText = `Слово: ${quizWords[quizIndex].word_en}`;
+    document.getElementById('user-answer').value = "";
+    document.getElementById('quiz-feedback').innerText = "";
+}
+
+function checkAnswer() {
+    const userAnswer = document.getElementById('user-answer').value.trim().toLowerCase();
+    const correctAnswer = quizWords[quizIndex].word_ru.toLowerCase();
+    const feedback = document.getElementById('quiz-feedback');
+
+    if (userAnswer === correctAnswer) {
+        feedback.innerText = "✅ Правильно!";
+        feedback.style.color = "green";
+    } else {
+        feedback.innerText = `❌ Неправильно. Правильный перевод: ${quizWords[quizIndex].word_ru}`;
+        feedback.style.color = "red";
+    }
+}
+
+function nextQuizWord() {
+    quizIndex = (quizIndex + 1) % quizWords.length;
+    showQuizWord();
+}
+
+// Показать первый вопрос при загрузке
+showQuizWord();
+
+</script>
+
+{% endblock %}

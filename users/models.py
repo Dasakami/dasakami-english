@@ -12,7 +12,8 @@ class User(AbstractUser):
     
     role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='admin')
 
-    custom_id = models.CharField(max_length=50, unique=True, blank=True, null=True)
+    custom_id = models.CharField(max_length=100, null=True, blank=True, unique=False)
+
 
     def save(self, *args, **kwargs):
         if not self.custom_id:

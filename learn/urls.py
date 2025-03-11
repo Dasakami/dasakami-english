@@ -20,6 +20,8 @@ urlpatterns = [
     path('add/', views.add_idiom, name='add_idiom'),
     path('delete/<int:idiom_id>/', views.delete_idiom, name='delete_idiom'),
     path('youtube/', views.youtube, name='youtube'),
+    path('card/<int:card_id>/import/', views.import_words, name='import_words'),
+
 ]
 if settings.DEBUG :
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

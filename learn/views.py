@@ -7,6 +7,7 @@ from .models import Card, Word
 from .forms import CardForm, WordForm
 from .models import Idiom
 from .forms import IdiomForm
+import csv
 
 def phrases_verbs_view(request):
     verbs = PhrasalVerb.objects.all()
@@ -67,6 +68,36 @@ def delete_word(request, word_id):
     word = Word.objects.get(id=word_id)
     word.delete()
     return redirect('learn:card_detail', card_id=word.card.id)
+
+import csv
+
+def import_words(request, card_id):
+    card = get_object_or_404(Card, id=card_id)
+    
+    if request.method == 'POST' and request.FILES.get('csv_file'):
+        csv_file = request.FILES['csv_file']
+        
+        try:
+            # Попытка прочитать файл с кодировкой UTF-8
+            decoded_file = csv_file.read().decode('utf-8').splitlines()
+        except UnicodeDecodeError:
+            # В случае ошибки попытка прочитать с кодировкой latin1
+            decoded_file = csv_file.read().decode('latin1').splitlines()
+
+        reader = csv.reader(decoded_file)
+        
+        for row in reader:
+            if len(row) >= 4:
+                Word.objects.create(
+                    card=card,
+                    word=row[0].strip(),
+                    translation=row[1].strip(),
+                    transcription=row[2].strip(),
+                    example=row[3].strip()
+                )
+        return redirect('learn:card_detail', card_id=card.id)
+
+    return render(request, 'learn/import_words.html', {'card': card})
 
 
 def learn(request):

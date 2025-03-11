@@ -1,0 +1,124 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Импорт слов из PDF</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6fa;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 30px 35px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #444;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background-color: #f9f9f9;
+            font-size: 16px;
+        }
+
+        button[type="submit"] {
+            margin-top: 20px;
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #1976D2;
+        }
+
+        a {
+            margin-left: 15px;
+            font-size: 16px;
+            text-decoration: none;
+            color: #555;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: #000;
+        }
+
+        p {
+            margin-top: 30px;
+            font-size: 16px;
+            color: #444;
+            text-align: left;
+            max-width: 600px;
+        }
+
+        pre {
+            background-color: #eef3f8;
+            padding: 15px;
+            border-radius: 6px;
+            color: #333;
+            font-size: 16px;
+            max-width: 600px;
+            overflow-x: auto;
+        }
+
+        @media (max-width: 600px) {
+            form, pre, p {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Импорт слов из PDF-файла в карточку: {{ flashcard.title }}</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label>Загрузите PDF-файл со словами:</label>
+        <input type="file" name="pdf_file" accept=".pdf" required>
+        <button type="submit">Импортировать</button>
+        <a href="{% url 'flashcards:flashcard_detail' flashcard.pk %}">Отмена</a>
+    </form>
+    
+    <p><strong>Формат PDF-файла:</strong> каждое слово и перевод — на отдельной строке:</p>
+    <pre>
+apple - яблоко  
+go - идти  
+school : школа
+    </pre>
+
+</body>
+</html>

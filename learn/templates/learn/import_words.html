@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h2>Импорт слов в карточку: {{ card.title }}</h2>
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <input type="file" name="csv_file" accept=".csv" required>
+  <button type="submit">Загрузить CSV</button>
+</form>
+
+<a href="{% url 'learn:card_detail' card.id %}">← Назад к карточке</a>
+</body>
+</html>
