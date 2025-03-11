@@ -1,0 +1,346 @@
+    /* Основной контейнер */
+.book-detail {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+header {
+    padding: 20px;
+    text-align: center;
+    z-index: 10;
+    position: relative;  /* Устанавливаем относительно */
+}
+
+/* Левая панель */
+.left-side {
+    position: sticky;
+    top: 0; /* Панель зафиксирована относительно верхней части, но не прокручивается вниз */
+    width: 300px;
+    height: calc(100vh - 100px); /* Высота панели меньше на высоту header */
+    padding-top: 80px; /* Чтобы панель не перекрывала header */
+    overflow-y: auto;
+    z-index: 5;
+}
+
+/* From Uiverse.io by SelfMadeSystem */ 
+.rating {
+    display: flex;
+    margin-top: 20px;
+    gap: 0.3rem;
+    --stroke: #666;
+    --fill: #ffc73a;
+  }
+  
+  .rating input {
+    appearance: unset;
+  }
+  
+.rating label {
+    cursor: pointer;
+  }
+  
+.rating svg {
+    width: 2rem;
+    height: 2rem;
+    overflow: visible;
+    fill: transparent;
+    stroke: var(--stroke);
+    stroke-linejoin: bevel;
+    stroke-dasharray: 12;
+    animation: idle 4s linear infinite;
+    transition: stroke 0.2s, fill 0.5s;
+  }
+  
+@keyframes idle {
+    from {
+      stroke-dashoffset: 24;
+    }
+  }
+  
+  .rating label:hover svg {
+    stroke: var(--fill);
+  }
+  
+  .rating input:checked ~ label svg {
+    transition: 0s;
+    animation: idle 4s linear infinite, yippee 0.75s backwards;
+    fill: var(--fill);
+    stroke: var(--fill);
+    stroke-opacity: 0;
+    stroke-dasharray: 0;
+    stroke-linejoin: miter;
+    stroke-width: 8px;
+  }
+  
+@keyframes yippee {
+0% {
+      transform: scale(1);
+      fill: var(--fill);
+      fill-opacity: 0;
+      stroke-opacity: 1;
+      stroke: var(--stroke);
+      stroke-dasharray: 10;
+      stroke-width: 1px;
+      stroke-linejoin: bevel;
+    }
+  
+30% {
+      transform: scale(0);
+      fill: var(--fill);
+      fill-opacity: 0;
+      stroke-opacity: 1;
+      stroke: var(--stroke);
+      stroke-dasharray: 10;
+      stroke-width: 1px;
+      stroke-linejoin: bevel;
+    }
+  
+30.1% {
+      stroke: var(--fill);
+      stroke-dasharray: 0;
+      stroke-linejoin: miter;
+      stroke-width: 8px;
+    }
+  
+0% {
+      transform: scale(1.2);
+      fill: var(--fill);
+    }
+  }
+  
+
+.book-info img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.book-text {
+    margin-top: 10px;
+}
+
+.popular-books ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.popular-books li {
+    margin: 5px 0;
+}
+
+/* Центральная часть */
+.center-content {
+    padding-top: 50px;
+    max-width: 600px;
+    flex-grow: 1;
+}
+
+.center-content h2 {
+    margin-bottom: 10px;
+}
+
+.center-content #book-description {
+    margin-bottom: 20px;
+}
+
+.comment-form {
+    width: 100%;
+    margin-top: 30px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.comment-form textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    resize: vertical;
+    min-height: 120px;
+    margin-bottom: 10px;
+}
+
+.comment-form button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.comment-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Стили для списка комментариев */
+.comment-list {
+    width: 100%;
+    margin-top: 40px;
+}
+
+.comment-item {
+    background-color: #ffffff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comment-item .comment-header {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.comment-item .comment-text {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+}
+
+.comment-item .comment-footer {
+    font-size: 0.9rem;
+    color: #aaa;
+    text-align: right;
+    margin-top: 10px;
+}
+
+/* Правая панель */
+.right-side {
+    position: sticky;
+    top: 0; /* Панель зафиксирована относительно верхней части, но не прокручивается вниз */
+    width: 300px;
+    height: calc(100vh - 100px); /* Высота панели меньше на высоту header */
+    padding-top: 80px; /* Чтобы панель не перекрывала header */
+    overflow-y: auto;
+    z-index: 5;
+}
+
+.recommended-books ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.recommended-books li {
+    margin: 5px 0;
+}
+
+/* Кнопки */
+.btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+
+.right-side .recommended-books .recommended-book a {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.recommended-book a img {
+    width: 130px;height: 200px;
+    padding: 2px 3px;
+    background-color: #aaa;
+    margin-right: 10px;
+}
+
+.recommended-book a p {
+    color: #333;
+}   
+
+/* From Uiverse.io by cssbuttons-io */ 
+.center-content form #delete {
+    width: 170px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background: red;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+    background: #e62222;
+    margin-top: 30px;
+   }
+   
+   form #delete,  form #delete span {
+    transition: 200ms;
+   }
+   
+   form #delete.text {
+    transform: translateX(35px);
+    color: white;
+    font-weight: bold;
+   }
+   
+    form #delete .icon {
+    position: absolute;
+    border-left: 1px solid #c41b1b;
+    transform: translateX(110px);
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   }
+   
+    form #delete svg {
+    width: 15px;
+    fill: #eee;
+   }
+   
+    form #delete:hover {
+    background: #ff3636;
+   }
+   
+    form #delete:hover .text {
+    color: transparent;
+   }
+   
+   form #delete:hover .icon {
+    width: 150px;
+    border-left: none;
+    transform: translateX(0);
+   }
+   
+    form #delete:focus {
+    outline: none;
+   }
+   
+   form #delete:active .icon svg {
+    transform: scale(0.8);
+   }
+
+
+/* Скрыть рейтинг на мобильных устройствах */
+@media (max-width: 768px) {
+    .left-side {
+        display: none;
+    }
+    .right-side {
+        display: none;
+    }
+}

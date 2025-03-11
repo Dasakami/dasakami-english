@@ -1,0 +1,139 @@
+
+
+    h1 {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .container-verbs {
+        display: flex;
+        gap: 40px;
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .table-section {
+        flex: 2;
+        min-width: 60%;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+        padding: 12px;
+        border: 1px solid #ccc;
+        text-align: left;
+    }
+
+    th {
+        background-color: #e6f0ff;
+        font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f6ff;
+    }
+
+    tr:hover {
+        background-color: #e0ecff;
+    }
+
+    .delete-link a {
+        color: crimson;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .delete-link a:hover {
+        text-decoration: underline;
+    }
+
+
+.form-panel {
+    flex: 1;
+    min-width: 280px;
+    background-color: #f9f9f9;
+    border-left: 3px solid #007acc;
+    padding: 25px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease-in-out;
+}
+
+.form-panel h2 {
+    color: #007acc;
+    font-size: 20px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 6px;
+}
+
+.form-panel form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-panel form input,
+.form-panel form select,
+.form-panel form textarea {
+    padding: 10px 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    font-size: 15px;
+    transition: border-color 0.3s ease;
+}
+
+.form-panel form input:focus,
+.form-panel form select:focus,
+.form-panel form textarea:focus {
+    border-color: #007acc;
+    outline: none;
+}
+
+.form-panel form button {
+    background-color: #007acc;
+    color: #fff;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-panel form button:hover {
+    background-color: #005fa3;
+}
+
+
+#add_idiom {
+    padding: 15px 20px;
+    background-color: aquamarine;
+    text-decoration: none;
+    color: black;
+    position: relative;
+    left: 10vh;
+    bottom: 4vh;
+    display: inline-block;
+    transition: transform .3s ease;
+    border-radius: 20px;
+}
+
+#add_idiom:hover {
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    #add_idiom {
+        left: 0;
+        bottom: 0;
+    }
+}
