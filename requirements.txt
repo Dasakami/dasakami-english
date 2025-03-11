@@ -1,0 +1,7 @@
+django
+pathlib
+fitz
+PyMuPDF
+csv
+bleach
+phonenumber_field
