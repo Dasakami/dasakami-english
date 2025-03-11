@@ -1,7 +1,7 @@
-django
-pathlib
-fitz
-PyMuPDF
-csv
-bleach
-phonenumber_field
+Django==3.2.9
+pathlib==1.0.1
+fitz==0.0.1
+PyMuPDF==1.18.19
+csv==1.0
+bleach==4.1.0
+phonenumber_field==5.1.0
