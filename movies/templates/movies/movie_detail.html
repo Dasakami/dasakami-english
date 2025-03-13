@@ -99,11 +99,13 @@
             </label>
           </div>
         <p class="description"><strong>Описание:</strong> {{ movie.description }}</p>
+        {% if user.is_superuser or user.is_staff %}
         <div class="button-edit">
             <a href="{% url 'movies:edit_movie' movie.id %}" class="btn btn-warning">Изменить</a>
 <a href="{% url 'movies:delete_movie' movie.id %}" class="btn btn-danger" onclick="return confirm('Вы уверены, что хотите удалить этот фильм?');">Удалить</a>
 
         </div>
+        {% endif %}
         <h3>Комментарии</h3>
 
         <div id="comments-list">

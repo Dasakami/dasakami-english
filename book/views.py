@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Book
 from .forms import CommentForm
 from .forms import BookForm
+from django.contrib.auth.models import AnonymousUser
 
 
 def book_list(request):
@@ -22,7 +23,10 @@ def book_list(request):
 def book_detail(request, book_id):
     book = get_object_or_404(Book, id=book_id)
     recommended_books = Book.objects.exclude(id=book_id).order_by('?')[:5]  # Исключаем текущую книгу
-    comments = book.comments.all()  # Получаем все комментарии к книге
+    comments = book.comments.all()
+    if isinstance(request.user, AnonymousUser):
+        # Например, возвращаем ошибку или перенаправляем на страницу логина
+        return redirect('users:login')  # Получаем все комментарии к книге
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -35,7 +39,8 @@ def book_detail(request, book_id):
         form = CommentForm()
 
     return render(request, 'book/book_detail.html', {'book': book, 'comments': comments, 'form': form, 'recommended_books': recommended_books})
-
+    
+    
 @login_required
 def add_book(request):
     if request.method == 'POST':

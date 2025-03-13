@@ -10,6 +10,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('open-admin/', views.open_admin, name='admin'),
     path('learn/', include(('learn.urls'), namespace='learn')),
+    path('game/', include(('game.urls'), namespace='game')),
     path('users/', include(('users.urls'), namespace='users')),
     path('book/', include(('book.urls'), namespace='book')),
     path('movies/', include(('movies.urls'), namespace='movies')),

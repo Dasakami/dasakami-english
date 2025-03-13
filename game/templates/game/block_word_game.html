@@ -1,0 +1,75 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Block Word Game</title>
+    <style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: rgb(59, 89, 152); /* Updated blue background */
+  color: white;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  margin: 20px auto;
+  width: 400px;
+}
+
+.score-display {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.current-score {
+  font-weight: bold;
+  color: #42f554;
+}
+
+.high-score {
+  font-weight: bold;
+  color: #4287f5;
+}
+
+#gameCanvas {
+  border: 2px solid #444;
+  background-color: #1e1e1e; /* Dark grid background */
+  margin: 10px 0;
+}
+
+.pieces {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.piece {
+  background-color: #333;
+  border: 2px solid #555;
+  cursor: grab;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="score-display">
+          <div class="current-score">Score: <span id="score">0</span></div>
+          <div class="high-score">High Score: <span id="highScore">0</span></div>
+        </div>
+        <canvas id="gameCanvas"></canvas>
+        <div class="pieces">
+          <canvas id="piece1" class="piece"></canvas>
+          <canvas id="piece2" class="piece"></canvas>
+          <canvas id="piece3" class="piece"></canvas>
+        </div>
+      </div>
+    <script src="{% static 'vendor/js/block_word_gam.js' %}"></script>
+</body>
+</html>

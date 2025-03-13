@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyberpunk Word Shooter</title>
+</head>
+<body>
+
+  <div class="game-container">
+    <canvas id="gameCanvas"></canvas>
+    <input type="text" id="wordInput" placeholder="Type the word here..." autofocus>
+    <div id="score">Score: 0</div>
+  </div>
+
+  <style>
+    /* style.css */
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  color: #00ffcc;
+  font-family: 'Orbitron', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.game-container {
+  text-align: center;
+}
+
+canvas {
+  border: 2px solid #00ffcc;
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 20px #00ffcc;
+}
+
+#wordInput {
+  margin-top: 20px;
+  padding: 10px;
+  font-size: 16px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 1px solid #00ffcc;
+  color: #00ffcc;
+  outline: none;
+}
+
+#score {
+  margin-top: 20px;
+  font-size: 24px;
+  color: #00ffcc;
+}
+  </style>
+  <script src="{% static 'vendor/js/word_galaga.js' %}"></script>
+</body>
+</html>

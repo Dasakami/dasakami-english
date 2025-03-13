@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="canvasContainer"></div>
+    <span id="textInputSpan">
+      Your Word (max 8 characters) :
+      <input id="textInput" maxlength="10" type="text" width="150" />
+      <button onclick="changeText()">GO!</button>
+    </span>
+
+    <style>
+        html, body{
+    margin : 0px;
+    width : 100%;
+    height : 100%;
+    overflow: hidden;
+    background-color: #FFFFFF;
+}
+
+#canvasContainer{
+    margin : 0px;
+    width : 100%;
+    height : 100%;
+}
+
+#textInputSpan{
+    position: absolute;
+    color: #000000;
+    font-family: optima;
+    font-weight: 540;
+}
+    </style>
+    <script src="{% static 'vendor/js/flappy_word.js' %}"></script>
+</body>
+</html>

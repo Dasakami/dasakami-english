@@ -6,8 +6,9 @@
 {% block title %}Idioms{% endblock %}
 {% block content %}
 <h1>English Idioms</h1>
+{% if user.is_superuser or user.is_staff %}
     <a href="{% url 'learn:add_idiom' %}" id="add_idiom">Add New Idiom</a>
-    
+    {% endif %}
     <table>
         <thead>
             <tr>

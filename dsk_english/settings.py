@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'dj('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'main',
+    'game',
     'users',
     'book',
     'learn',
@@ -110,9 +111,9 @@ LOGGING = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'name db',  # Имя базы данных
+        'NAME': 'dsk_english',  # Имя базы данных
         'USER': 'postgres',  # Имя пользователя
-        'PASSWORD': 'password db',  # Пароль пользователя
+        'PASSWORD': '1908',  # Пароль пользователя
         'HOST': 'localhost',
         'PORT': '5432',  # Порт по умолчанию для PostgreSQL
     }
@@ -237,7 +238,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-ALLOWED_HOSTS = ['127.0.0.1', '192.168.225.53']
+ALLOWED_HOSTS = ['127.0.0.1', '192.168.225.53', '192.168.7.244']
 
 AUTH_USER_MODEL = 'users.User'
 dependencies = [

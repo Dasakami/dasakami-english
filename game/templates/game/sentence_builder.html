@@ -1,0 +1,413 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main class="app">
+        <div class="sentence">
+            <div data-sentence class="sentence__builder">
+                <span data-placeholder class="sentence__placeholder">Drop buzzwords here...</span>
+            </div>
+            <button class="sentence_btn" data-btn>Synergize!</button>
+        </div>
+    
+        <div data-words class="words">
+            <span class="word">Synergy</span>
+            <span class="word">Circle-back</span>
+            <span class="word">Affinity</span>
+            <span class="word">But</span>
+            <span class="word">Segment</span>
+            <span class="word">Cohort</span>
+            <span class="word">Why</span>
+            <span class="word">Data-lake</span>
+            <span class="word">Guru</span>
+            <span class="word">The</span>
+            <span class="word">Take it offline</span>
+            <span class="word">Like</span>
+            <span class="word">Actionable-data</span>
+            <span class="word">Holistic</span>
+            <span class="word">While</span>
+            <span class="word">Is</span>
+            <span class="word">Agnostic</span>
+            <span class="word">Storytelling</span>
+            <span class="word">Frictionless</span>
+            <span class="word">Native</span>
+            <span class="word">If</span>
+            <span class="word">Alignment</span>
+            <span class="word">Sea of sameness</span>
+            <span class="word">Innovation</span>
+            <span class="word">Disruption</span>
+            <span class="word">Organic</span>
+            <span class="word">LTV</span>
+            <span class="word">Organic Growth</span>
+            <span class="word">Millenials</span>
+            <span class="word">Outside the Box</span>
+            <span class="word">Of</span>
+            <span class="word">Make it Pop</span>
+            <span class="word">Because</span>
+            <span class="word">Wheelhouse</span>
+            <span class="word">Too</span>
+            <span class="word">Core Competency</span>
+            <span class="word">Get some face time</span>
+            <span class="word">ACV</span>
+            <span class="word">Blue Ocean</span>
+            <span class="word">Blue Sky</span>
+            <span class="word">Also</span>
+            <span class="word">White Space</span>
+            <span class="word">When</span>
+            <span class="word">Traction</span>
+            <span class="word">Acountability</span>
+            <span class="word">And</span>
+            <span class="word">Customer Centric</span>
+            <span class="word">NPS</span>
+            <span class="word">Bandwidth</span>
+            <span class="word">So</span>
+            <span class="word">Close the loop</span>
+            <span class="word">As</span>
+            <span class="word">Hyper-local</span>
+            <span class="word">Value-add</span>
+            <span class="word">To</span>
+            <span class="word">Inbound</span>
+            <span class="word">We</span>
+            <span class="word">Micro-influencer</span>
+            <span class="word">Approach</span>
+            <span class="word">How</span>
+            <span class="word">Outbound</span>
+            <span class="word">Agile</span>
+            <span class="word">Tactical</span>
+            <span class="word">DTC</span>
+            <span class="word">Growth-Hack</span>
+            <span class="word">KPI</span>
+            <span class="word">Sticky</span>
+            <span class="word">NPS</span>
+            <span class="word">Scalability </span>
+            <span class="word">Best-in-class</span>
+            <span class="word">Touch-base</span>
+            <span class="word">Sprints</span>
+            <span class="word">I</span>
+            <span class="word">Workstream</span>
+            <span class="word">Influencer</span>
+            <span class="word">Advaptive</span>
+            <span class="word">Responsive</span>
+            <span class="word">You</span>
+            <span class="word">Viral</span>
+            <span class="word">For</span>
+            <span class="word">Virility</span>
+        </div>
+    
+        <section class="leaderboard" data-leaderboard></section>
+    </main>
+    <style>
+        * {
+	box-sizing: border-box;
+}
+
+.gu-mirror {
+	position: fixed !important;
+	margin: 0 !important;
+	z-index: 9999 !important;
+	opacity: 0.8;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+	filter: alpha(opacity=80);
+}
+
+.gu-hide {
+	display: none !important;
+}
+
+.gu-unselectable {
+	-webkit-user-select: none !important;
+	-moz-user-select: none !important;
+	-ms-user-select: none !important;
+	user-select: none !important;
+}
+
+.gu-transit {
+	opacity: 0.2;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+	filter: alpha(opacity=20);
+}
+
+* {
+	box-sizing: border-box
+}
+
+body,
+html {
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	background: #ddd;
+}
+
+.app {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 100%;
+}
+
+.sentence {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	width: 100%;
+	padding: 3.25em 1.25em 0;
+	
+	@media(min-width: 700px) {
+		flex-direction: row;
+	}
+}
+
+.sentence__builder {
+	position: relative;
+	display: flex;
+	background: #fff;
+	border: solid 1px #dddddd;
+	width: 100%;
+	line-height: 3.8em;
+	height: 3.8em;
+	margin-right: .3125em;
+	margin-bottom: .625em;
+	
+	@media(min-width: 700px) {
+		width: 70%;
+		margin-bottom: 0;
+	}
+	
+	.word {
+		line-height: 1.5;
+		white-space: nowrap;
+		
+		@media(min-width: 700px) {
+			line-height: 1;
+		}
+	}
+}
+
+.sentence__placeholder {
+	position: absolute;
+	font-size: 1em;
+	font-weight: 100;
+	color: #aaa;
+	width: 100%;
+	left: .833333333em;
+	
+	@media(min-width: 700px) {
+		font-size: 1.3em;
+	}
+}
+
+.sentence_btn {
+	transition: .3s;
+	text-transform: uppercase;
+	padding: 0 2.5em;
+	background: #ff8100;
+	border: 0;
+	color: #fff;
+	line-height: 3.75em;
+	height: 3.75em;
+	outline: none;
+	&:hover {
+		background: #ff933a;
+	}
+}
+
+.words {
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	width: calc(100% - 2.5em);
+	margin-top: 3.75em;
+	
+	.word {
+		margin: .1875em;
+	}
+}
+
+.word {
+	transition: background .3s;
+	cursor: move;
+	cursor: grab;
+	cursor: -webkit-grab;
+	cursor: -moz-grab;
+	background: #ccc;
+	text-align: center;
+	line-height: 1;
+	margin: .3125em 0 .3125em .3125em;
+	padding: .75em 1em;
+	outline: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	overflow: hidden;
+	&:hover {
+		background: #bcbcbc;
+	}
+	&:active {
+		background: #ababab;
+		cursor: -webkit-grabbing;
+		cursor: -moz-grabbing;
+		cursor: grabbing;
+	}
+	
+	@media(min-width: 700px) {
+		padding: .9375em 1.25em;
+	}
+}
+
+.leaderboard {
+	padding: 3.75em 0;
+	width: 80%;
+}
+
+.leaderboard__entry {
+	display: flex;
+	align-items: center;
+	background: #fff;
+	padding: 1.25em;
+	margin-bottom: 1.25em;
+}
+
+.leaderboard__num {
+	font-size: 2.5em;
+	color: #aaa;
+	padding: .3125em;
+	
+	@media(min-width: 700px) {
+		padding: 0 1.25em;
+	}
+}
+
+.leaderboard__sentence {
+	padding: 0 .9375em;
+}
+
+.leaderboard__love {
+	color: #aaa;
+	margin-left: auto;
+	margin-right: 10px;
+	text-decoration: none;
+}
+
+.leaderboard__love--loved {
+	color: yellow; 
+}
+
+    </style>
+    <script>
+        const words = document.querySelector('[data-words]');
+const sentence = document.querySelector('[data-sentence]');
+const placeholder = document.querySelector('[data-placeholder]');
+const btn = document.querySelector('[data-btn]');
+const leaderboard = document.querySelector('[data-leaderboard]');
+
+var entries = [];
+
+function submit() {
+	let sen = '',
+		wrds = sentence.querySelectorAll('.word'),
+		uid = new Date().getTime(),
+		entryObj = {};
+
+	[].forEach.call(wrds, (wrd) => {
+		sen += `${wrd.innerHTML} `;
+	});
+	
+	entryObj = {
+		'uid': uid,
+		'sentence': sen,
+		'loves': 0
+	};
+	
+	entries.push(entryObj);
+	
+	updateLeaderboard();
+	
+	clearBuilder();
+}
+
+function updateLeaderboard() {
+	let markup = '';
+	
+	entries = _.sortBy(entries, 'loves').reverse();
+		
+	leaderboard.innerHTML = '';
+		
+	entries.forEach((entry, i) => {
+		leaderboard.appendChild(buildEntry(entry, i + 1));
+	});
+}
+	
+function buildEntry(entry, index) {
+	let entryContainer = document.createElement('article');
+	
+	entryContainer.classList.add('leaderboard__entry');
+	entryContainer.innerHTML = `
+		<div class="leaderboard__num">
+			${index}
+		</div>
+		<p class="leaderboard__sentence">${entry.sentence}</p>
+		<a href="#" class="leaderboard__love fa fa-heart" data-love="${entry.uid}"></a>
+		<span class="leaderboard__loves">${entry.loves}</span>
+	`;
+			
+	entryContainer.querySelector('[data-love]').addEventListener('click', (e) => {
+		e.preventDefault();
+		love(e.currentTarget.getAttribute('data-love'));
+	});
+	
+	return entryContainer;
+}
+
+function love(uid) {
+	let entry = _.find(entries, {uid: Number(uid)});
+	entry.loves++;
+	updateLeaderboard();
+}
+
+function clearBuilder() {
+	let wrds = sentence.querySelectorAll('.word');
+	
+	[].forEach.call(wrds, (wrd) => {
+		words.appendChild(wrd);
+	});
+	
+	resetPlaceholder();
+}
+
+function resetPlaceholder() {
+	let s = sentence.querySelectorAll('.word');
+
+	if (!s.length) {
+		placeholder.style.display = 'block';
+	} else {
+		placeholder.style.display = 'none';
+	}
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+
+	var drag = dragula([
+		words,
+		sentence
+	]);
+
+	btn.addEventListener('click', submit);
+
+	drag.on('drop', resetPlaceholder);
+	drag.on('cancel', resetPlaceholder);
+
+});
+    </script>
+</body>
+</html>
