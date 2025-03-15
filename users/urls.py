@@ -13,9 +13,5 @@ urlpatterns = [
     path('setting/', setting, name='setting'),
     path('search/', search_users, name='search_users'),  # Страница поиска пользователей
     path('profile/<int:user_id>/', view_profile, name='view_profile'),  # Страница профиля другого пользователя
-        path('password_reset/', views.password_reset_request, name='password_reset'),
-    path('password_reset/done/', views.password_reset_done, name='password_reset_done'),
-    path('reset/<uidb64>/<token>/', views.password_reset_confirm, name='password_reset_confirm'),
-    path('reset/done/', views.password_reset_complete, name='password_reset_complete'),
 ]
 
