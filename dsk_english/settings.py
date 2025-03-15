@@ -39,12 +39,6 @@ INSTALLED_APPS = [
     'learn',
     'movies',
     'flashcards',
-    'django.contrib.sites',  # Это приложение для работы с allauth
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.vk',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
