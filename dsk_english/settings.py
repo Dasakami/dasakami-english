@@ -134,9 +134,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTHENTICATION_BACKENDS = (
-    'allauth.account.auth_backends.AuthenticationBackend',  # это основной backend для аутентификации
-)
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -153,26 +150,6 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-LOGIN_REDIRECT_URL = '/'  # Указываем, куда перенаправлять пользователя после успешной авторизации
-LOGOUT_REDIRECT_URL = '/'  # Указываем, куда перенаправлять после выхода
-
-# Конфигурация для работы с email
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # Подтверждение email обязательно
-ACCOUNT_EMAIL_REQUIRED = True
-
-SITE_ID = 1
-
-# Включаем отправку email
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'myemail@example.com'  # Замените на ваш email
-EMAIL_HOST_PASSWORD = 'password email'  # Замените на ваш пароль
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
-# Время жизни ссылки для сброса пароля
-PASSWORD_RESET_TIMEOUT = 14400  # 4 часа
 
 
 
